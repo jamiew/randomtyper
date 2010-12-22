@@ -1,8 +1,28 @@
-<div class="snippet">
-  <h1>Paste a new code snippet below:</h1>
+
+<div class="form">
+  <h1>TYPE SOMETHING YOU IDIOT</h1>
   <form action="/" method="POST">
-    <textarea name="snippet_body" id="snippet_body" rows="20"></textarea>
+    <textarea name="snippet_body" id="snippet_body" rows="8"></textarea>
     <br/>
-    <input type="submit" value="Save"/>
+    <div class="submit">
+      <input type="submit" value="OK GREAT" />
+    </div>
   </form>
+</div>
+
+<div id="snippets">
+  <% if @snippets.nil? || @snippets.empty? %>
+    YR ABOUT TO BE THE 1ST POST
+  <% end %>
+
+  <% @snippets.each do |snippet| %>
+  <div class="snippet">
+    <div class="body">
+       <%= snippet.formatted_body %>
+    </div>
+    <div class="created_at">
+       <%= snippet.created_at && snippet.created_at.strftime("%D %T") %>
+    </div>
+  </div>
+  <% end %>
 </div>

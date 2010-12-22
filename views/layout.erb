@@ -1,61 +1,55 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title><%= @title || 'Toopaste!' %></title>
+  <title><%= @title || 'RANDOMTYPER' %></title>
   <style>
     body {
       background-color: #eee;
       font-family: "Trebuchet MS", verdana, tahoma, arial, sans-serif;
-    }
-    .snippet {
-      margin: 5px;
-    }
-    .snippet textarea, .snippet .sbody {
-      font-size: 15pt;
-      padding: 2px;
-    }
-    .snippet textarea {
-      padding: 20px;
-    }
-    .snippet input, .snippet .sdate {
-      margin-top: 5px;
+      font-size: 18pt;
     }
 
-    /* Syntax highlighting */
-    #content .syntax_ruby .normal {}
-    #content .syntax_ruby .comment { color: #CCC; font-style: italic; border: none; margin: none; }
-    #content .syntax_ruby .keyword { color: #C60; font-weight: bold; }
-    #content .syntax_ruby .method { color: #9FF; }
-    #content .syntax_ruby .class { color: #074; }
-    #content .syntax_ruby .module { color: #050; }
-    #content .syntax_ruby .punct { color: #0D0; font-weight: bold; }
-    #content .syntax_ruby .symbol { color: #099; }
-    #content .syntax_ruby .string { color: #C03; }
-    #content .syntax_ruby .char { color: #F07; }
-    #content .syntax_ruby .ident { color: #0D0; }
-    #content .syntax_ruby .constant { color: #07F; }
-    #content .syntax_ruby .regex { color: #B66; }
-    #content .syntax_ruby .number { color: #FF0; }
-    #content .syntax_ruby .attribute { color: #7BB; }
-    #content .syntax_ruby .global { color: #7FB; }
-    #content .syntax_ruby .expr { color: #909; }
-    #content .syntax_ruby .escape { color: #277; }
-    #content .syntax {
-      background-color: #333;
-      padding: 2px;
-      margin: 5px;
-      margin-left: 1em;
-      margin-bottom: 1em;
+    #container {
+      width: 580px;
+      margin: 0 auto;
+      padding-top: 10px;
     }
-    #content .syntax .line_number {
-      text-align: right;
-      font-family: monospace;
-      padding-right: 1em;
-      color: #999;
+    #container h1 {
+      text-align: center;
+      font-size: 30pt;
+    }
+
+    #snippets {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .snippet {
+      border-top: 1px solid #ddd;
+      margin: 15px 0 15px;
+      padding-top: 15px;
+    }
+    .snippet .body, .snippet .created_at { display: inline; }
+    .snippet .created_at { color: #bbb; font-size: 9pt; }
+
+    .form textarea {
+      font-size: 16pt;
+      padding: 20px;
+      width: 95%;
+    }
+    .form .submit {
+      text-align: center; margin-top: 5px;
+    }
+    .form .submit input {
+      margin-top: 5px;
+      font-size: 20pt;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <%= yield %>
+  <div id="container">
+    <%= yield %>
+  </div>
 </body>
 </html>

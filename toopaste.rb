@@ -5,49 +5,46 @@ require 'dm-core'
 require 'dm-validations'
 require 'dm-timestamps'
 require 'dm-migrations'
-require 'syntaxi'
 
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://toopaste.db")
+ENV['DATABASE_URL'] ||= "sqlite3://#{File.dirname(__FILE__)}/toopaste.db"
+puts "Database: #{ENV['DATABASE_URL']}"
+DataMapper.setup(:default, ENV['DATABASE_URL'])
+DataMapper::Logger.new($stdout, :debug)
 
 class Snippet
   include DataMapper::Resource
 
-  property :id,         Serial # primary serial key
+  property :id,         Serial # primary key
   property :body,       Text,   :required => true
   property :created_at, DateTime
   property :updated_at, DateTime
 
-  # validates_present :body
-  # validates_length :body, :minimum => 1
-
-  Syntaxi.line_number_method = 'floating'
-  Syntaxi.wrap_at_column = 80
-  #Syntaxi.wrap_enabled = false
+  validates_presence_of :body
+  validates_length_of :body, :minimum => 1
 
   def formatted_body
-    replacer = Time.now.strftime('[code-%d]')
-    html = Syntaxi.new("[code lang='ruby']#{self.body.gsub('[/code]',
-    replacer)}[/code]").process
-    "<div class=\"syntax syntax_ruby\">#{html.gsub(replacer, 
-    '[/code]')}</div>"
+    # TODO parse out bad shit
+    return body
   end
 end
 
 DataMapper.auto_upgrade!
-#File.open('toopaste.pid', 'w') { |f| f.write(Process.pid) }
+File.open('toopaste.pid', 'w') { |f| f.write(Process.pid) }
 
 # new
 get '/' do
+  @snippets = Snippet.all(:order => [:created_at.desc], :limit => 5)
   erb :new
 end
 
 # create
 post '/' do
-  @snippet = Snippet.new(:body => params[:snippet_body])
-  if @snippet.save
-    redirect "/#{@snippet.id}"
+  @snippet = Snippet.new(:body => params[:snippet_body], :created_at => DateTime.now)
+  if @snippet.save!
+    # redirect "/#{@snippet.id}"
+    redirect "/"
   else
-    redirect '/'
+    [400, 'Error: feels bad man :(']
   end
 end
 
