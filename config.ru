@@ -1,5 +1,5 @@
 require 'rubygems'
 require 'sinatra'
 
-require 'toopaste'
+require 'randomtyper'
 run Sinatra::Application
