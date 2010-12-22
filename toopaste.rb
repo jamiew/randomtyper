@@ -6,10 +6,10 @@ require 'dm-validations'
 require 'dm-timestamps'
 require 'dm-migrations'
 
-ENV['DATABASE_URL'] ||= "sqlite3://#{File.dirname(__FILE__)}/toopaste.db"
+# ENV['DATABASE_URL'] ||= "sqlite3://#{File.dirname(__FILE__)}/toopaste.db"
+ENV['DATABASE_URL'] ||= "sqlite3://toopaste.db"
 puts "Database: #{ENV['DATABASE_URL']}"
 DataMapper.setup(:default, ENV['DATABASE_URL'])
-DataMapper::Logger.new($stdout, :debug)
 
 class Snippet
   include DataMapper::Resource
