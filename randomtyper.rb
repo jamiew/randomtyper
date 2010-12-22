@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby -rubygems
+#!/usr/bin/env ruby -rubygems
 
 require 'sinatra'
 require 'dm-core'
@@ -7,21 +7,17 @@ require 'dm-timestamps'
 require 'dm-migrations'
 require 'htmlentities'
 
-# ENV['DATABASE_URL'] ||= "sqlite3://#{File.dirname(__FILE__)}/randomtyper.db"
-ENV['DATABASE_URL'] ||= "sqlite3://randomtyper.db"
-puts "Database: #{ENV['DATABASE_URL']}"
+dev_prefix = ENV['RACK_ENV'] == 'development' ? File.expand_path(File.dirname(__FILE__))+'/' : ''
+ENV['DATABASE_URL'] ||= "sqlite3://#{dev_prefix}randomtyper.db"
 DataMapper.setup(:default, ENV['DATABASE_URL'])
 
 class Snippet
   include DataMapper::Resource
 
-  property :id,         Serial # primary key
-  property :body,       Text,   :required => true
+  property :id,         Serial
+  property :body,       String, :required => true, :length => 1..255
   property :created_at, DateTime
   property :updated_at, DateTime
-
-  validates_presence_of :body
-  validates_length_of :body, :minimum => 1
 
   def formatted_body
     @@coder ||= HTMLEntities.new
@@ -40,11 +36,10 @@ end
 # create
 post '/' do
   @snippet = Snippet.new(:body => params[:snippet_body], :created_at => DateTime.now)
-  if @snippet.save!
-    # redirect "/#{@snippet.id}"
+  if @snippet.save
     redirect "/"
   else
-    [400, 'Error: feels bad man :(']
+    erb :error, :status => 400
   end
 end
 
