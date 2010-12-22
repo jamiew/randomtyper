@@ -5,3 +5,4 @@ dm-timestamps
 dm-migrations
 dm-postgres-adapter
 htmlentities
+newrelic_rpm
