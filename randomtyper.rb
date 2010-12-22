@@ -25,7 +25,7 @@ class Snippet
 
   def formatted_body
     @@coder ||= HTMLEntities.new
-    return @@coder.encode(body)
+    return @@coder.encode(body, :named)
   end
 end
 
