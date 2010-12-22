@@ -5,6 +5,7 @@ require 'dm-core'
 require 'dm-validations'
 require 'dm-timestamps'
 require 'dm-migrations'
+require 'htmlentities'
 
 # ENV['DATABASE_URL'] ||= "sqlite3://#{File.dirname(__FILE__)}/randomtyper.db"
 ENV['DATABASE_URL'] ||= "sqlite3://randomtyper.db"
@@ -23,8 +24,8 @@ class Snippet
   validates_length_of :body, :minimum => 1
 
   def formatted_body
-    # TODO parse out bad shit
-    return body
+    @@coder ||= HTMLEntities.new
+    return @@coder.encode(body)
   end
 end
 
