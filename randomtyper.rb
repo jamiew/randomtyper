@@ -32,7 +32,7 @@ DataMapper.auto_upgrade!
 
 # new
 get '/' do
-  @snippets = Snippet.all(:order => [:created_at.desc], :limit => 5)
+  @snippets = Snippet.all(:order => [:created_at.desc], :limit => 50)
   erb :new
 end
 
