@@ -8,7 +8,7 @@ require 'dm-migrations'
 require 'htmlentities'
 
 dev_prefix = ENV['RACK_ENV'] == 'development' ? File.expand_path(File.dirname(__FILE__))+'/' : ''
-ENV['DATABASE_URL'] ||= "sqlite3://#{dev_prefix}randomtyper.db"
+ENV['DATABASE_URL'] ||= "sqlite3://#{dev_prefix}randomtyper.sqlite3"
 DataMapper.setup(:default, ENV['DATABASE_URL'])
 
 class Snippet
