@@ -29,7 +29,6 @@ class Snippet
 end
 
 DataMapper.auto_upgrade!
-File.open('toopaste.pid', 'w') { |f| f.write(Process.pid) }
 
 # new
 get '/' do
