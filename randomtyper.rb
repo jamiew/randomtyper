@@ -9,7 +9,7 @@ require 'htmlentities'
 require 'newrelic_rpm'
 
 dev_prefix = ENV['RACK_ENV'] == 'development' ? File.expand_path(File.dirname(__FILE__))+'/' : ''
-ENV['DATABASE_URL'] ||= "sqlite3://#{dev_prefix}randomtyper.sqlite3"
+ENV['DATABASE_URL'] ||= "sqlite3://#{dev_prefix}database.sqlite3"
 DataMapper.setup(:default, ENV['DATABASE_URL'])
 
 class Snippet
@@ -22,7 +22,12 @@ class Snippet
 
   def formatted_body
     @@coder ||= HTMLEntities.new
-    return @@coder.encode(body, :named)
+    encoded = @@coder.encode(body, :named) # ecscape all special chars
+    newline = "\r\n" # inconsistent between systems :(
+    encoded.gsub!(/(#{newline}#{newline})+/, newline) # replace >2 newlines in a row with just 1 (allow paragraphs)
+    encoded.gsub!(newline, "<br />") # then turn newlines into HTML
+    puts encoded.inspect
+    return encoded
   end
 end
 
