@@ -1,8 +1,8 @@
 <div id="error">
-  <img src="http://www.mortgagebrokers.ie/blog/wp-content/uploads/2009/05/feels-bad-man.jpg" />
+  <img src="feels-bad-man.jpg" alt="feels bad man" title="feels bad man" />
 
   <%# FIXME call the field 'text' natively, or at least 'content'. BODY IS SO DUM %>
-  <p><%= @snippet.errors.map {|k,v| k.gsub('Body','Text') }.join("</p><p>") %></p>
+  <p><%= @post.errors.map {|k,v| k.gsub('Body','Text') }.join("</p><p>") %></p>
 
   <p>Sending you back<blink>...</blink></p>
 

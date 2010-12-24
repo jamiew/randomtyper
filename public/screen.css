@@ -4,6 +4,10 @@ body {
   font-size: 18pt;
 }
 
+#error {
+  text-align: center;
+}
+
 #container {
   width: 580px;
   margin: 0 auto;
@@ -14,25 +18,29 @@ body {
   font-size: 30pt;
 }
 
-#snippets {
+#posts {
   margin-top: 40px;
   text-align: center;
 }
 
-.snippet {
+.post {
   border-top: 1px solid #ddd;
   margin: 15px 0 15px;
   padding-top: 15px;
 }
-.snippet .created_at { color: #bbb; font-size: 9pt; }
+.post .created_at {
+  color: #bbb;
+  font-size: 9pt;
+}
 
 .form textarea {
   font-size: 16pt;
-  padding: 20px;
+  padding: 10px 10px;
   width: 95%;
 }
 .form .submit {
-  text-align: center; margin-top: 5px;
+  text-align: center;
+  margin-top: 5px;
 }
 .form .submit input {
   margin-top: 5px;
@@ -40,4 +48,9 @@ body {
   text-align: center;
 }
 
-#error { text-align: center; }
+.form #wpm {
+  display: inline;
+  padding: 3px 8px;
+  border: 1px dashed #bbb;
+  color: #444;
+}

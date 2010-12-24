@@ -1,0 +1,8 @@
+<div class="post">
+  <div class="body">
+     <%= post.formatted_body %>
+  </div>
+  <div class="created_at">
+     <%= post.created_at && post.created_at.strftime("%D %T") %>
+  </div>
+</div>

@@ -16,7 +16,10 @@ class Snippet
   include DataMapper::Resource
 
   property :id,         Serial
-  property :body,       Text, :required => true, :length => 1..255
+  property :body,       Text, :required => true, :length => 1..1000
+  property :user_agent, String, :length => 0..512
+  property :ip_address, String, :length => 1..24 # really only 16
+  property :referer,    String, :length => 0..1024
   property :created_at, DateTime
   property :updated_at, DateTime
 
@@ -26,7 +29,6 @@ class Snippet
     newline = "\r\n" # inconsistent between systems :(
     encoded.gsub!(/(#{newline}#{newline})+/, newline) # replace >2 newlines in a row with just 1 (allow paragraphs)
     encoded.gsub!(newline, "<br />") # then turn newlines into HTML
-    puts encoded.inspect
     return encoded
   end
 end
@@ -35,14 +37,15 @@ DataMapper.auto_upgrade!
 
 # new
 get '/' do
-  @snippets = Snippet.all(:order => [:created_at.desc], :limit => 50)
+  @posts = Snippet.all(:order => [:created_at.desc], :limit => 50)
   erb :new
 end
 
 # create
 post '/' do
-  @snippet = Snippet.new(:body => params[:snippet_body], :created_at => DateTime.now)
-  if @snippet.save
+  @post = Snippet.new(:body => params[:snippet_body], :created_at => DateTime.now,
+                  :ip_address => request.ip, :user_agent => request.user_agent, :referer => request.referer)
+  if @post.save
     redirect "/"
   else
     erb :error, :status => 400
@@ -51,8 +54,8 @@ end
 
 # show
 get '/:id' do
-  @snippet = Snippet.get(params[:id])
-  if @snippet
+  @post = Snippet.get(params[:id])
+  if @post
     erb :show
   else
     redirect '/'
