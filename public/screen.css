@@ -24,7 +24,7 @@ a:active { color: #f0f; }
 
 #posts {
   margin: 40px 0 80px;
-  text-align: center;
+  text-align: left;
 }
 
 #posts .more { margin: 40px 0; }
