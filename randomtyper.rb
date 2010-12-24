@@ -37,8 +37,14 @@ DataMapper.auto_upgrade!
 
 # new
 get '/' do
-  @posts = Snippet.all(:order => [:created_at.desc], :limit => 50)
+  @posts = Snippet.all(:order => [:created_at.desc], :limit => 3)
   erb :new
+end
+
+# index
+get '/posts' do
+  @posts = Snippet.all(:order => [:created_at.desc], :limit => 100)
+  erb :index
 end
 
 # create

@@ -4,6 +4,10 @@ body {
   font-size: 18pt;
 }
 
+a { color: #000; }
+a:hover { color: #005; }
+a:active { color: #f0f; }
+
 #error {
   text-align: center;
 }
@@ -19,9 +23,12 @@ body {
 }
 
 #posts {
-  margin-top: 40px;
+  margin: 40px 0 80px;
   text-align: center;
 }
+
+#posts .more { margin: 40px 0; }
+#posts .more a { font-weight: bold; }
 
 .post {
   border-top: 1px solid #ddd;

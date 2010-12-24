@@ -4,6 +4,5 @@ dm-validations
 dm-timestamps
 dm-migrations
 dm-postgres-adapter
-rack_csrf
 htmlentities
 newrelic_rpm

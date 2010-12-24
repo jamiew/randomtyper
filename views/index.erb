@@ -1,0 +1,7 @@
+<h1>HERE'S SOME FRIGGIN POSTS</h1>
+<div id="posts">
+  <% @posts.each do |post| %>
+    <%= erb :_post, :locals => {:post => post} %>
+  <% end %>
+  <p class="more"><a href="/">GO HOME</a>
+</div>

@@ -23,4 +23,6 @@
   <% @posts.each do |post| %>
     <%= erb :_post, :locals => {:post => post} %>
   <% end %>
+
+  <p class="more"><a href="/posts">VIEW MORE POSTS</a></p>
 </div>
