@@ -9,7 +9,7 @@ function updateWPM(){
   if(startTime == 0){ startTime = now(); }
   var time = (now() - startTime)/1000;
   if(time >= 1){
-    var wpm = wordCount / time * 60;
+    var wpm = (wordCount-1) / time * 60;
     $('#wpm .number').text(Math.round(wpm));    
   }
 }
