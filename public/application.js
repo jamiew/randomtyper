@@ -12,13 +12,15 @@ function updateWPM(){
     var wpm = wordCount / time * 60;
     $('#wpm .number').text(Math.round(wpm));    
   }
-  else {
-    $('#wpm .number').text('...');
-  }
 }
 
 $(document).ready(function(){
   $('.form textarea').keypress(function(e){
+
+    // First keypress sets a 'WPM is loading' indication
+    if(wordCount == 0) {
+      $('#wpm .number').text('...');
+    }
 
     // Spacebar increments WPM
     if(e.which == 32) {
