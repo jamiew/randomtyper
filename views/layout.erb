@@ -5,6 +5,8 @@
   <link href="screen.css" rel="stylesheet" type="text/css" media="screen" charset="utf-8">
   <script src="jquery.min.js" type="text/javascript" charset="utf-8"></script>
   <script src="application.js" type="text/javascript" charset="utf-8"></script>
+  <link  href="//fonts.googleapis.com/css?family=Merriweather:regular" rel="stylesheet" type="text/css" >
+
   <% if ENV['RACK_ENV'] == 'production' %>
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -19,6 +21,9 @@
   <% end %>
 </head>
 <body>
+  <div id="header">
+    <h1 id="title">Randomtyper</h1>
+  </div>
   <div id="container">
     <%= yield %>
   </div>

@@ -8,6 +8,20 @@ a { color: #000; }
 a:hover { color: #005; }
 a:active { color: #f0f; }
 
+h1#title {
+  /* THANKS GOOGLE... ASSHOLES */
+  font-family: 'Merriweather', serif;
+  font-size: 59px;
+  font-style: normal;
+  font-weight: 400;
+  text-shadow: none;
+  text-decoration: none;
+  text-transform: none;
+  letter-spacing: 0em;
+  word-spacing: 0em;
+  line-height: 1.2;
+}
+
 #error {
   text-align: center;
 }
