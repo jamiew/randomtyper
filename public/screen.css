@@ -20,27 +20,17 @@ h1#title {
   letter-spacing: 0em;
   word-spacing: 0em;
   line-height: 1.2;
-}
-
-#error {
+  margin: 0;
+  padding: 0;
   text-align: center;
 }
 
-#container {
-  width: 580px;
-  margin: 0 auto;
-  padding-top: 10px;
-}
-#container h1 {
-  text-align: center;
-  font-size: 30pt;
-}
+#error { text-align: center; }
 
-#posts {
-  margin: 40px 0 80px;
-  text-align: left;
-}
+#container { width: 580px; margin: 0 auto; padding-top: 10px; }
+#container h2 { margin-top: 0; padding-top: 0; font-weight: normal; }
 
+#posts { margin: 40px 0 80px; text-align: left; }
 #posts .more { margin: 40px 0; }
 #posts .more a { font-weight: bold; }
 
@@ -49,25 +39,11 @@ h1#title {
   margin: 15px 0 15px;
   padding-top: 15px;
 }
-.post .created_at {
-  color: #bbb;
-  font-size: 9pt;
-}
+.post .created_at { color: #bbb; font-size: 9pt; }
 
-.form textarea {
-  font-size: 16pt;
-  padding: 10px 10px;
-  width: 95%;
-}
-.form .submit {
-  text-align: center;
-  margin-top: 5px;
-}
-.form .submit input {
-  margin-top: 5px;
-  font-size: 20pt;
-  text-align: center;
-}
+.form textarea { font-size: 16pt; padding: 10px 10px; width: 95%; }
+.form .submit { text-align: center; margin-top: 5px; }
+.form .submit input { margin-top: 5px; font-size: 20pt; text-align: center; }
 
 .form #wpm {
   display: inline;
