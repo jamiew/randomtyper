@@ -28,7 +28,7 @@ h1#title {
 #error { text-align: center; }
 
 #container { width: 580px; margin: 0 auto; padding-top: 10px; }
-#container h2 { margin-top: 0; padding-top: 0; font-weight: normal; }
+#container h2 { margin-top: 0; padding-top: 0; font-weight: normal; text-align: center; }
 
 #posts { margin: 40px 0 80px; text-align: left; }
 #posts .more { margin: 40px 0; }
